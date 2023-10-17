@@ -1,0 +1,210 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navs {
+    width: 100%;
+    background: linear-gradient(to left, #07976e 0%, #00c9ff 100%);
+  }
+  
+  #navbar-user ul {
+    /* background: linear-gradient(to left, #07976e 0%, #00c9ff 100%); */
+    background-color: transparent;
+  }
+  
+  .navs a img {
+    width: 100%;
+    margin-top: 1rem;
+  }
+footer {
+    background: linear-gradient(to left, #07976e 0%, #35bdbf 100%);
+    color: #ffffff;
+    padding: 20px 0;
+    margin-top: 2%;
+    text-align: center;
+}
+
+input {
+    background: #fafcfbf1;
+    border-radius: 5px;
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+button {
+    --border-radius: 15px;
+    --border-width: 4px;
+    appearance: none;
+    position: relative;
+    padding: 1em 2em;
+    border: 0;
+    background-color: #fffdfd;
+    font-family: "Roboto", Arial, "Segoe UI", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #000000;
+    z-index: 2;
+}
+
+button::after {
+    --m-i: linear-gradient(#000, #000);
+    --m-o: content-box, padding-box;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: var(--border-width);
+    border-radius: var(--border-radius);
+    background-image: conic-gradient(
+        #488cfb,
+        #29dbbc,
+        #3c9449,
+        #10b570,
+        #17c297,
+        #12739f,
+        #1cb853
+    );
+    -webkit-mask-image: var(--m-i), var(--m-i);
+    mask-image: var(--m-i), var(--m-i);
+    -webkit-mask-origin: var(--m-o);
+    mask-origin: var(--m-o);
+    -webkit-mask-clip: var(--m-o);
+    mask-composite: exclude;
+    -webkit-mask-composite: destination-out;
+    filter: hue-rotate(0);
+    animation: rotate-hue linear 500ms infinite;
+    animation-play-state: paused;
+}
+
+button:hover::after {
+    animation-play-state: running;
+}
+
+@keyframes rotate-hue {
+    to {
+        filter: hue-rotate(1turn);
+    }
+}
+
+button,
+button::after {
+    box-sizing: border-box;
+}
+
+button:active {
+    --border-width: 15px;
+}
+
+.my-button {
+    --border-radius: 15px;
+    --border-width: 4px;
+    appearance: none;
+    position: relative;
+    padding: 1em 2em;
+    border: 0;
+    background-color: #fffdfd;
+    font-family: "Roboto", Arial, "Segoe UI", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #000000;
+    z-index: 2;
+}
+
+.my-button::after {
+    --m-i: linear-gradient(#000, #000);
+    --m-o: content-box, padding-box;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: var(--border-width);
+    border-radius: var(--border-radius);
+    background-image: conic-gradient(
+        #488cfb,
+        #29dbbc,
+        #3c9449,
+        #10b570,
+        #17c297,
+        #12739f,
+        #1cb853
+    );
+    -webkit-mask-image: var(--m-i), var(--m-i);
+    mask-image: var(--m-i), var(--m-i);
+    -webkit-mask-origin: var(--m-o);
+    mask-origin: var(--m-o);
+    -webkit-mask-clip: var(--m-o);
+    mask-composite: exclude;
+    -webkit-mask-composite: destination-out;
+    filter: hue-rotate(0);
+    animation: rotate-hue linear 500ms infinite;
+    animation-play-state: paused;
+}
+
+.my-button:hover::after {
+    animation-play-state: running;
+}
+
+@keyframes rotate-hue {
+    to {
+        filter: hue-rotate(1turn);
+    }
+}
+
+.my-button,
+.my-button::after {
+    box-sizing: border-box;
+}
+
+.my-button:active {
+    --border-width: 15px;
+}
+
+
+@media (max-width: 768px) {
+    .flex {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .mr-20 {
+      margin-right: 0;
+    }
+  
+    .text-center {
+      text-align: center;
+    }
+  
+    .w-72 {
+      width: 200px;
+      align-items: center; 
+    }
+  
+    .h-72 {
+      height: 200px;
+
+    }
+  
+    .my-button {
+      margin: 1rem 0;
+    }
+  
+    .ml-20 {
+      margin-left: 0;
+    }
+  }
+  
