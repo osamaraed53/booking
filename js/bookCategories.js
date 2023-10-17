@@ -9,16 +9,17 @@ function createCard(data) {
   urlSearchParams.append('id', data["id"]);
   const href = 'http://127.0.0.1:5500/html/Detail.html?' + urlSearchParams.toString();
 
-  var newBooks = document.getElementById("newBooks");
+  var newBooks = document.getElementById("newBooks-section");
   var newBooks_card = document.createElement('div');
-  newBooks_card.classList.add('newBooks_card');
+  newBooks_card.classList.add('book-card');
 
   newBooks_card.innerHTML = `
-    <a href=${href}>
-    <img class="" src="${data["image"]}" alt="cover" width="190rem" height="280rem">
-    <p class="newBooks-card_text">${data["authername"]}</p>
-    <h1 class="newBooks-card_title">${data["bookname"]}</h1>
-    </a>`;
+      <a href="${href}"> 
+          <img src="${data["image"]}" alt="Book Cover">
+          <p class="book-title">${data["bookname"]}</p>
+          <p class="book-author">${data["authername"]}</p>
+      </a>
+`;
   newBooks.appendChild(newBooks_card);
 }
 
@@ -36,11 +37,7 @@ async function getDataFromJsonBySearchQuery(searchQuery){
 
 }
 
-// async function test(){
-//   const data = await getDataFromJsonBySearchQuery("Resurrection")
-//   console.log(data[0]);
-// }
-// test()
+
 
 function updatePagination(totalPages) {
   let pagination = document.getElementById("pagination");
@@ -63,8 +60,8 @@ function updatePagination(totalPages) {
 
 
 async function work(operation,ifQuery=undefined) {
-  let location = document.getElementById("newBooks");
-  location.innerHTML = '';
+  let location = document.getElementById("newBooks-section");
+  location.innerHTML = ' ';
   let dataArray = [];
   if(operation == getDataFromJsonBySearchQuery){
     dataArray = await getDataFromJsonBySearchQuery(ifQuery);}
@@ -79,13 +76,8 @@ async function work(operation,ifQuery=undefined) {
       {
         dataArray.push(checker);
       }
-      
     }
-} 
-
-  
-
-  for (let i = (currentPage - 1) * itemsPerPage; i <  currentPage * itemsPerPage && i < dataArray.length; i++) {
+}  for (let i = (currentPage - 1) * itemsPerPage; i <  currentPage * itemsPerPage && i < dataArray.length; i++) {
       createCard(dataArray[i]);
   }
 
