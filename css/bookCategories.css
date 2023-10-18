@@ -59,6 +59,7 @@ header h3{
   justify-content: space-around;
   flex-wrap: wrap;
   padding: 7px;
+  border-radius: 8px;
 }
 .categories select{
   border-radius: 3rem; 
@@ -76,7 +77,7 @@ header h3{
   grid-template-columns: repeat(3,1fr);
   width: 12rem;
   height: 3rem;
-
+  position: relative;
 }
 .categories input{
   border-radius: 3rem; 
@@ -85,7 +86,7 @@ header h3{
   grid-column: 1/4;
   display: inline;
   height: 3rem;
-  position: relative;
+
 }
 
 .categories form button{
@@ -97,8 +98,9 @@ header h3{
   padding: 7px;
   grid-column: 3/4;
   position: absolute;
+  height: 3rem;
   top: 0;
-  left:0;  
+  left:-4rem;  
 }
 
 /* end categories */

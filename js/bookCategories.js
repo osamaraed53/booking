@@ -1,9 +1,12 @@
-// important value
+// the default is english because we have problem in json server ,this problem is the all categories in categories  proparity
 let selectedGenre = "none";
 let selectedAgeGroup = "none";
-let selectedLanguage = "none";
-const itemsPerPage = 10;
+let selectedLanguage = "English";
 
+// Initial display Pagination 
+let currentPage = 1;
+const itemsPerPage = 10;
+//  ------------------------- createCard ------------------------
 function createCard(data) {
   const urlSearchParams = new URLSearchParams();
   urlSearchParams.append('id', data["id"]);
@@ -24,6 +27,7 @@ function createCard(data) {
 }
 
 
+// ------------------------------ All search function ---------------------------
 async function getDataFromJsonById(id = '') {
   const response = await fetch(`http://localhost:3000/books/${id}`);
   const data = await response.json();
@@ -38,7 +42,7 @@ async function getDataFromJsonBySearchQuery(searchQuery){
 }
 
 
-
+// ------------------------------------- all function about Pagination ---------------------------------
 function updatePagination(totalPages) {
   let pagination = document.getElementById("pagination");
   pagination.innerHTML = '';
@@ -50,22 +54,20 @@ function updatePagination(totalPages) {
     pageLink.addEventListener('click', (e) => {
       e.preventDefault();
       currentPage = i;
-      work(getDataFromJsonById);
+      work();
     });
     pagination.appendChild(pageLink);
   }
 }
 
 
-
-
-async function work(operation,ifQuery=undefined) {
+async function work(ifQuery="undefined") {
   let location = document.getElementById("newBooks-section");
   location.innerHTML = ' ';
   let dataArray = [];
-  if(operation == getDataFromJsonBySearchQuery){
+  if(ifQuery != "undefined"){
     dataArray = await getDataFromJsonBySearchQuery(ifQuery);}
-  else{
+  else  {
     // Fetch data
     for (let i = 1; i <= 82; i++) {
       const data = await getDataFromJsonById(i);
@@ -77,7 +79,9 @@ async function work(operation,ifQuery=undefined) {
         dataArray.push(checker);
       }
     }
-}  for (let i = (currentPage - 1) * itemsPerPage; i <  currentPage * itemsPerPage && i < dataArray.length; i++) {
+}
+
+for (let i = (currentPage - 1) * itemsPerPage; i <  currentPage * itemsPerPage && i < dataArray.length; i++) {
       createCard(dataArray[i]);
   }
 
@@ -89,8 +93,9 @@ async function work(operation,ifQuery=undefined) {
 }
 
 
+// --------------------Filter data based on Categories user and EventListener for it --------------------------------- 
 function displayDataAfterFilter(array) {
-   if(selectedAgeGroup == "none" && selectedGenre == "none" && selectedLanguage== "none"){
+   if(selectedAgeGroup == "none" && selectedGenre == "none" && selectedLanguage== "English"){
       // console.log(array["categories"]);
       return array;
     }
@@ -110,7 +115,7 @@ function displayDataAfterFilter(array) {
 }
 
 
-
+// if click in button will get data from input and 
 document.getElementById('buttonOfSearchByquery').addEventListener('click', function(event) {
   event.preventDefault(); // Prevent the form from being submitted
   searchByQuery();
@@ -119,7 +124,7 @@ document.getElementById('buttonOfSearchByquery').addEventListener('click', funct
 function searchByQuery() {
   console.log("osama")
   let searchQuery = document.getElementById('searchByquery').value;
-  work(getDataFromJsonBySearchQuery,searchQuery);
+  work(searchQuery);
   document.getElementById('searchByquery').value = '';
 }
 
@@ -128,14 +133,14 @@ const ageGroupSelect = document.getElementById('ageGroup');
 ageGroupSelect.addEventListener("change", (e) => {
   selectedAgeGroup = e.target.value;
   currentPage = 1;
-  work(getDataFromJsonById);
+  work();
 });
 
 const languageSelect = document.getElementById('language');
 languageSelect.addEventListener("change", (e) => {
   selectedLanguage = e.target.value;
   currentPage = 1;
-  work(getDataFromJsonById);
+  work();
 });
 
 
@@ -143,14 +148,13 @@ const GenreSelect = document.getElementById('genre');
 GenreSelect.addEventListener("change", (e) => {
   selectedGenre = e.target.value;
   currentPage = 1;
-  work(getDataFromJsonById);
+  work();
 });
 
 
 
-// Initial display
-let currentPage = 1;
-work(getDataFromJsonById);
+
+work();
 
 
 
