@@ -1,40 +1,30 @@
-
-async function getDataFromJson(id='1'){
-
-    const response = await fetch(`http://localhost:3000/books/${id}`);
-    const data = await response.json();
-    return data;
-
+async function getDataFromJson(id = "1") {
+  const response = await fetch(`http://localhost:3000/books/${id}`);
+  const data = await response.json();
+  return data;
 }
 
 //  var data =  getDataFromJson()
 //  console.log(data);
 
- 
- 
+function displayData(data) {
+  var section = document.getElementById("section");
 
-
-
-
-function displayData(data)
-{
-    var issa = document.getElementById("section")
-    
-          let moh = document.createElement("div")
-          moh.innerHTML=`
+  let div = document.createElement("div");
+  div.innerHTML = `
           <!-- Description Book -->
         <div class="description">
         <h5
-        class="mb-4 text-1xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-1xl h1"
+        class="mb-4 text-1xl font-extrabold  dark:text-white md:text-3xl lg:text-1xl h1"
       >
         <span
-          class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400 span"
-          >${data['bookname']}</span
+          class=" bg-clip-text  span"
+          >${data["bookname"]}</span
         >
       </h5>
           <br>
-            <p class="nameauther1">${data['authername']}</p><br>
-            <p class= "descr">${data['Descriptions']}</p><br><br>
+            <p class="nameauther1">${data["authername"]}</p><br>
+            <p class= "descr">${data["Descriptions"]}</p><br><br>
             <hr>
         </div>
             <!-- /Description Book -->
@@ -44,21 +34,21 @@ function displayData(data)
             <!------- Author------>
         <div class="author">
         <h5
-        class="mb-4 text-1xl font-extrabold text-gray-900 dark:text-white md:text-2xl lg:text-1xl h1"
+        class="mb-4 text-1xl font-extrabold  dark:text-white md:text-2xl lg:text-1xl h1"
       >
         <span
-          class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400 span"
+          class=" bg-clip-text  span"
           >About the author</span
         >
       </h5>
             <br>
             <div class ="auth">
-            <img src="${data['autherimage']}" alt="" class="imgauthor"><br><br>
+            <img src="${data["autherimage"]}" alt="" class="imgauthor"><br><br>
             
-            <p class="nameauther2">${data['authername']}</p><br>
+            <p class="nameauther2">${data["authername"]}</p><br>
             
             </div><br>
-            <p>${data['autherDescription']}</p><br>
+            <p>${data["autherDescription"]}</p><br>
             <br>
         </div><hr>
             <!------- /Author------>
@@ -67,10 +57,10 @@ function displayData(data)
 
       <div class="related">
       <h5
-          class="mb-4 text-1xl font-extrabold text-gray-900 dark:text-white md:text-2xl lg:text-1xl h1"
+          class="mb-4 text-1xl font-extrabold  dark:text-white md:text-2xl lg:text-1xl h1"
         >
           <span
-            class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400 span"
+            class="bg-clip-text   span"
             >Related</span
           >
         </h5>
@@ -121,10 +111,10 @@ function displayData(data)
 
    <div class="reviews">
    <h5
-   class="mb-4 text-1xl font-extrabold text-gray-900 dark:text-white md:text-2xl lg:text-1xl h1"
+   class="mb-4 text-1xl font-extrabold  dark:text-white md:text-2xl lg:text-1xl h1"
  >
    <span
-     class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400 span"
+     class="bg-clip-text  span"
      >Rating</span
    >
  </h5>
@@ -132,63 +122,51 @@ function displayData(data)
 
    
  
-<span class=" checked star ">  ${data['Rating']} </span>
+<span class=" checked star ">  ${data["Rating"]} </span>
 </div>
 <br>
 <div>
 
 
-    <!------- Reviews------>`
+    <!------- Reviews------>`;
 
-      issa.appendChild(moh)
+  section.appendChild(div);
 
-      const starRating = generateStarRating(data["Rating"]);
-      moh.querySelector(".star").appendChild(starRating);
+  const starRating = generateStarRating(data["Rating"]);
+  div.querySelector(".star").appendChild(starRating);
 
-
-        
-        
-  console.log( data['id']);
-var loc = document.getElementById("main")
-loc.innerHTML=` <div id="fixedImage">
+  console.log(data["id"]);
+  var loc = document.getElementById("main");
+  loc.innerHTML = ` <div id="fixedImage">
   <div class="mainbook">
-  <img src="${data['image']}" alt="" class="imgbook">
+  <img src="${data["image"]}" alt="" class="imgbook">
+
       <form >
           <ul >
-              <li> <button class="sub"><a style="z-index=999" href="${data['bookurl']}" download > Download </a></button download>  </li>
-              <li> <button class="sub1"> <a style="z-index=999" href="${data['bookurl']}"> Read Now</a></button> </li>
-              <li><button  class="sub2"  id-of="${data['id']}}" >Favorite</button></li>
+          <li class=" checked star">    ${data["Rating"]}  </li>
+
+              <li> <button class="sub"><a style="z-index=999" href="${data["bookurl"]}" download > Download </a></button download>  </li>
+              <li> <button class="sub1"> <a style="z-index=999" href="${data["bookurl"]}"> Read Now</a></button> </li>
+              <li><button  class="sub2"  id-of="${data["id"]}}" >Favorite</button></li>
           </ul>
       </form>
       
   </div>
 
-</div>`  
-          
-document.getElementById('a').style.backgroundImage="url(images/img.jpg)";  
+</div>`;
 
-   
-  
-  } 
-
-
-
-
-
-  const id = new URLSearchParams(window.location.search).get('id');
-  console.log(id);
-  
-
-async function main(){
-  const data = await getDataFromJson(id);
-  displayData(data)
-
-
+  document.getElementById("a").style.backgroundImage = "url(images/img.jpg)";
 }
 
-main()
+const id = new URLSearchParams(window.location.search).get("id");
+console.log(id);
 
+async function main() {
+  const data = await getDataFromJson(id);
+  displayData(data);
+}
 
+main();
 
 function generateStarRating(rating) {
   const ratingDiv = document.createElement("div");
@@ -207,5 +185,3 @@ function generateStarRating(rating) {
 
   return ratingDiv;
 }
-
-  

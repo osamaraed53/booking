@@ -3,18 +3,31 @@
   padding: 0;
   scroll-behavior: smooth;
 }
+
+body {
+  background-color: #282758;
+}
 i {
   font-size: 20px;
   padding: 5px;
-  color: white;
+  color: wheat;
 }
 .ankur {
   color: white;
 }
 .navs {
   width: 100%;
-  /* background: linear-gradient(to right ,#35bdbf  0%, #07976e 100%); */
-  background: linear-gradient(to left, #07976e 0%, #00c9ff 100%);
+  background: linear-gradient(to right, #05043d 0%, #05043d 100%);
+  /* background-color: transparent; */
+  /* position: fixed;
+  color: white;
+  z-index: 999; */
+}
+.navs a {
+  color: wheat;
+}
+.span {
+  background-color: wheat;
 }
 
 #navbar-user ul {
@@ -25,6 +38,10 @@ i {
 .navs a img {
   width: 100%;
   margin-top: 1rem;
+}
+.classnav {
+  display: flex;
+  align-items: center;
 }
 
 .p2-section3 {
@@ -58,7 +75,7 @@ i {
   font-size: 35px;
   margin-left: 60px;
   font-weight: bold;
-  background: linear-gradient(to right, #07976e 0%, #35bdbf 100%);
+  /* background: linear-gradient(to right, #07976e 0%, #35bdbf 100%); */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -77,7 +94,8 @@ i {
   font-size: 30px;
   -webkit-background-clip: text;
   background-clip: text;
-  background: linear-gradient(to right, #07976e 0%, #07976e 100%);
+  /* background: linear-gradient(to right, #07976e 0%, #07976e 100%); */
+  background-color: wheat;
 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -100,7 +118,8 @@ i {
     font-size: 30px;
     -webkit-background-clip: text;
     background-clip: text;
-    background: linear-gradient(to right, #07976e 0%, #35bdbf 100%);
+    /* background: linear-gradient(to right, #07976e 0%, #35bdbf 100%); */
+    background-color: wheat;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-left: 50px;
@@ -163,6 +182,23 @@ i {
   }
 }
 
+footer a {
+  text-decoration: none;
+  color: wheat;
+}
+footer {
+  text-decoration: none;
+  background: #05043d;
+}
+footer .copyright {
+  color: wheat;
+}
+
+footer a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
 @media screen and (min-width: 480px) and (max-width: 768px) {
   * {
     padding: 0;
@@ -211,7 +247,8 @@ i {
     font-size: 30px;
     -webkit-background-clip: text;
     background-clip: text;
-    background: linear-gradient(to right, #07976e 0%, #35bdbf 100%);
+    /* background: linear-gradient(to right, #07976e 0%, #35bdbf 100%); */
+    background-color: wheat;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-left: 50px;

@@ -6,12 +6,13 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
+  height: 100vh;
 }
 
 i {
   font-size: 20px;
   padding: 5px;
-  color: white;
+  color: wheat;
 }
 .ankur {
   color: white;
@@ -49,9 +50,19 @@ i {
   margin-left: 230px;
 }
 
+.ankur {
+  color: white;
+}
 .navs {
   width: 100%;
-  background: linear-gradient(to left, #07976e 0%, #00c9ff 100%);
+  background: linear-gradient(to right, #05043d 0%, #05043d 100%);
+  /* background-color: transparent; */
+  position: fixed;
+  color: white;
+  z-index: 999;
+}
+.navs a {
+  color: wheat;
 }
 
 #navbar-user ul {
@@ -62,6 +73,10 @@ i {
 .navs a img {
   width: 100%;
   margin-top: 1rem;
+}
+.classnav {
+  display: flex;
+  align-items: center;
 }
 
 @media screen and (min-width: 320px) and (max-width: 480px) {
@@ -117,8 +132,21 @@ i {
   .section2 {
     min-width: 320px;
     max-width: 480px;
+    background-color: #05043d;
+  }
+  footer a {
+    text-decoration: none;
+    color: wheat;
+  }
+  footer {
+    text-decoration: none;
+    background: #05043d;
+  }
+  footer .copyright {
+    color: wheat;
   }
 }
+
 @media screen and (min-width: 480px) and (max-width: 768px) {
   * {
     padding: 0;

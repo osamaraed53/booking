@@ -64,7 +64,7 @@
             required=""
             id="password"
           />
-          <a href="/index.html">Login</a>
+          <button id="loginButtons">Login</button>
         </form>
       </div>
     </div>
@@ -74,58 +74,16 @@
     <script src="https://www.gstatic.com/firebasejs/9.0.1/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.1/firebase-database-compat.js"></script>
 
-
-
-
-    <!-- <script type="module">
-      // Import the functions you need from the SDKs you need
-
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
-    
-      // Your web app's Firebase configuration
-      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-
-    
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
-
-
-
-
-
-
-      
-    </script>
- -->
-
-
-
-
-
-
-
-
-
-
-
-
     <script>
-
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
-
       const firebaseConfig = {
-        apiKey: "AIzaSyDeu7DNyGmABiF7Maiv4M4fdgLcri4mo50",
-        authDomain: "book-bank-12a6f.firebaseapp.com",
-        projectId: "book-bank-12a6f",
-        storageBucket: "book-bank-12a6f.appspot.com",
-        messagingSenderId: "449510945471",
-        appId: "1:449510945471:web:48e512aa48fd87d4c4cc0a",
-        measurementId: "G-5WQ5WH05NE"
+        apiKey: "AIzaSyDemxlP4SFlImxIfJK50Bp8PZX0L-ctnZY",
+        authDomain: "book-26a1c.firebaseapp.com",
+        projectId: "book-26a1c",
+        storageBucket: "book-26a1c.appspot.com",
+        messagingSenderId: "989156743126",
+        appId: "1:989156743126:web:fad69202ddfa0b8e2c7677",
       };
-    
+
       const app = firebase.initializeApp(firebaseConfig);
       const auth = firebase.auth();
       const db = firebase.firestore();
@@ -142,7 +100,7 @@
             const user = userCredential.user;
             alert("user created");
             // if user created will go to home page;
-            window.location.href = "/index.html";
+            // window.location.href = "/index.html";
 
             // Save user data to Firestore
             db.collection("users").doc(email).set({
@@ -194,11 +152,12 @@
 
         //   داخل مقطع الكود الخاص بتسجيل الدخول
         document
-          .querySelector(".login a")
+          .getElementById("loginButtons")
           .addEventListener("click", function () {
-            const email = document.getElementById("Email").value;
-            const password = document.getElementById("Password").value;
-            const Username = document.getElementById("Username").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            // const Username = document.getElementById("username").value;
+            console.log("I'am in");
 
             // تسجيل الدخول باستخدام Firebase Auth كما فعلت بالفعل
 
@@ -211,6 +170,7 @@
               if (userData) {
                 // userData يحتوي على بيانات المستخدم، يمكنك إرسالها إلى JSON Server
                 sendUserDataToJSONServer(userData);
+                // window.Location.href = "/index.html";
               } else {
                 console.log("User data not found in Realtime Database.");
               }
@@ -228,6 +188,8 @@
             .then((response) => response.json())
             .then((data) => {
               console.log("User data sent to JSON Server:", data);
+              window.location.href = "/index.html";
+              console.log("in Post");
             })
             .catch((error) => {
               console.error("Error sending user data to JSON Server:", error);
@@ -279,34 +241,64 @@
         );
       });
 
-      //   داخل مقطع الكود الخاص بتسجيل الدخول
-      document.querySelector(".login a").addEventListener("click", function () {
-        const email = document.getElementById("Email").value;
-        const password = document.getElementById("Password").value;
-        const Username = document.getElementById("Username").value;
+      document
+        .getElementById("loginButtons")
 
-        // هنا يجب أن تقوم بتسجيل الدخول باستخدام Firebase كما قمت بالفعل
+        .addEventListener("click", function () {
+          const email = document.getElementById("Email").value;
+          const password = document.getElementById("Password").value;
 
-        // بعد تسجيل الدخول بنجاح، يمكنك إجراء الطلب POST إلى JSON Server
-        fetch("http://localhost:3000/User", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: email,
-            password: password,
-            Username: Username,
-          }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log("Data sent to JSON Server:", data);
+          auth
+            .signInWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+              const user = userCredential.user;
+              window.location.href = "/index.html";
+              console.log("1");
+              console.log(email);
+
+              alert("تم تسجيل الدخول بنجاح");
+              // توجيه المستخدم إلى صفحة الهوم بعد تسجيل الدخول بنجاح
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              alert("حدث خطأ أثناء تسجيل الدخول: " + errorMessage);
+            });
+        });
+      // داخل مقطع الكود الخاص بتسجيل الدخول
+      document
+        .getElementById("loginButtons")
+
+        .addEventListener("click", function () {
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+          // const Username = document.getElementById("Username").value;
+          console.log("email : ", email);
+          console.log("pas : ", password);
+          // هنا يجب أن تقوم بتسجيل الدخول باستخدام Firebase كما قمت بالفعل
+
+          // بعد تسجيل الدخول بنجاح، يمكنك إجراء الطلب POST إلى JSON Server
+          fetch("http://localhost:3000/User", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: email,
+              password: password,
+              Username: "isaa",
+            }),
           })
-          .catch((error) => {
-            console.error("Error sending data to JSON Server:", error);
-          });
-      });
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("Data sent to JSON Server:", data);
+              window.location.href = "/index.html";
+              console.log("2");
+            })
+            .catch((error) => {
+              console.error("Error sending data to JSON Server:", error);
+            });
+        });
     </script>
   </body>
 </html>
